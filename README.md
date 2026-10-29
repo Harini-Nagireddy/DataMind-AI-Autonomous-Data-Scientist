@@ -507,8 +507,8 @@ Visual previews of DataMind AI across key stages of the data science lifecycle:
 
 | View | Preview |
 |---|---|
-| **Smart Dashboard** | ![Smart Dashboard](docs/images/dashboard.png)<br><sub>*Adaptive KPI cards, metric summaries, and automated visualization charts.*</sub> |
-| **Data Quality Assessment** | ![Data Quality](docs/images/data-quality.png)<br><sub>*Data health score meter, missing value breakdowns, duplicate alerts, and column health metrics.*</sub> |
+| **Smart Dashboard** | ![Smart Dashboard](docs/dashboard.png)<br><sub>*Adaptive KPI cards, metric summaries, and automated visualization charts.*</sub> |
+| **Data Quality Assessment** | ![Data Quality](docs/data-quality.png)<br><sub>*Data health score meter, missing value breakdowns, duplicate alerts, and column health metrics.*</sub> |
 | **AutoML Leaderboard** | ![AutoML Engine](docs/images/automl-leaderboard.png)<br><sub>*Cross-validated model ranking, training times, primary metric comparisons, and best-model badge.*</sub> |
 | **Model Evaluation & ROC** | ![Model Evaluation](docs/images/model-evaluation.png)<br><sub>*Confusion matrices, multi-threshold ROC curves, and classification / regression score cards.*</sub> |
 | **Model Explainability** | ![Explainability](docs/images/model-explainability.png)<br><sub>*Feature importance rankings, relative weight percentages, and baseline model comparisons.*</sub> |
