@@ -1,0 +1,71 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Python virtual environments & packages
+.venv/
+venv/
+env/
+ENV/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+.eggs/
+
+# Testing & coverage
+coverage/
+.pytest_cache/
+.mypy_cache/
+
+# Local configuration & environment secrets (NEVER COMMIT REAL SECRETS)
+.env
+.env.*
+!.env.example
+*.local
+
+# Local DataMind authentication and session data (NEVER COMMIT)
+.datamind-auth/
+users.json
+
+# Local uploaded datasets & temporary storage
+uploads/
+temp/
+*.csv
+*.tsv
+*.xlsx
+*.xls
+!docs/examples/*.csv
+
+# Model artifacts & caches
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite cache
+.vite/
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo

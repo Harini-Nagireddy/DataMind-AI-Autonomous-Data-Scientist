@@ -1,0 +1,6 @@
+{
+  "name": "DataMind AI",
+  "description": "Your Autonomous AI Data Scientist - automated dataset profiling, cleaning, EDA, AutoML, explainability, insights, and interactive dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
