@@ -37,6 +37,7 @@
   - [8.3 Linux & macOS Setup](#83-linux--macos-setup)
   - [8.4 Environment Configuration](#84-environment-configuration)
   - [8.5 Running the Application](#85-running-the-application)
+  - [8.6 Render Cloud Deployment (Single Web Service)](#86-render-cloud-deployment-single-web-service)
 - [9. Verified API Endpoints](#9-verified-api-endpoints)
 - [10. Visual Presentation & Screenshots](#10-visual-presentation--screenshots)
 - [11. Security, Privacy & Reliability](#11-security-privacy--reliability)
@@ -419,6 +420,52 @@ http://localhost:3000
 npm run build
 npm start
 ```
+
+---
+
+### 8.6 Render Cloud Deployment (Single Web Service)
+
+DataMind AI is structured to run as **one unified web service** on [Render](https://render.com). The Node.js Express server acts as the primary reverse proxy and process supervisor, serving the compiled Vite React frontend, handling API routes, and spawning the Python FastAPI ML microservice internally.
+
+#### Automated Blueprint Deployment (Recommended)
+1. Fork or push this repository to your GitHub account.
+2. Sign in to your [Render Dashboard](https://dashboard.render.com).
+3. Click **New +** > **Blueprint**.
+4. Select your `DataMind-AI-Autonomous-Data-Scientist` repository.
+5. Render detects [`render.yaml`](render.yaml) automatically:
+   - **Environment**: Node
+   - **Build Command**: `npm ci && pip install -r requirements.txt && npm run build`
+   - **Start Command**: `npm start`
+   - **Environment Variables**:
+     - `NODE_ENV`: `production`
+     - `PYTHON_EXECUTABLE`: `python3`
+     - `AUTH_SECRET`: *Auto-generated secure random key*
+     - `GEMINI_API_KEY`: *Enter your key in the dashboard (optional)*
+6. Click **Apply**. Render will install both Python and Node dependencies, compile the production bundles, and boot the application.
+
+#### Manual Web Service Deployment
+If creating the service manually on Render:
+1. Click **New +** > **Web Service** > select your GitHub repository.
+2. Configure settings:
+   - **Name**: `datamind-ai`
+   - **Region**: Any (e.g. Oregon, Frankfurt)
+   - **Branch**: `main`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm ci && pip install -r requirements.txt && npm run build`
+   - **Start Command**: `npm start`
+3. Add Environment Variables under **Advanced**:
+   - `NODE_ENV` = `production`
+   - `PYTHON_EXECUTABLE` = `python3`
+   - `AUTH_SECRET` = `<Generate a secure 32+ character random string>`
+   - `GEMINI_API_KEY` = `<Your Google Gemini API Key (optional)>`
+   - `GEMINI_MODEL` = `gemini-3.5-flash-lite`
+
+#### Ephemeral Storage Considerations
+> [!NOTE]
+> Render's standard web services use ephemeral container filesystems. This means:
+> - Local user accounts registered via the demo auth form (`.datamind-auth/users.json`) and temporary upload streams (`/tmp/datamind-ai-datasets/`) exist inside the active container and reset when the service restarts, redeploys, or sleeps on the free plan.
+> - For persistent enterprise production workloads, mount a [Render Persistent Disk](https://render.com/docs/disks) or connect an external managed database (PostgreSQL, Supabase) and cloud object storage (S3, Cloud Storage).
+
 
 ---
 

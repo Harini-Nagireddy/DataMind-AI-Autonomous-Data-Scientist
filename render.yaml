@@ -1,0 +1,24 @@
+# ============================================================
+# Render Blueprint Specification for DataMind AI
+# Docs: https://render.com/docs/blueprint-spec
+# ============================================================
+services:
+  - type: web
+    name: datamind-ai
+    runtime: node
+    plan: free
+    buildCommand: npm ci && pip install -r requirements.txt && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PYTHON_EXECUTABLE
+        value: python3
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: GEMINI_FALLBACK_MODEL
+        value: gemini-3.5-flash-lite

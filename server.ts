@@ -13,8 +13,8 @@ import { signup, login, createSession, getSessionUser, destroySession, getCookie
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
-const ML_PORT = Number(process.env.ML_PORT || 8000);
+const PORT = Number(process.env.PORT) || 3000;
+const ML_PORT = Number(process.env.ML_PORT || (PORT === 8000 ? 8001 : 8000));
 const DATASET_DIR = path.join(os.tmpdir(), "datamind-ai-datasets");
 const DATASET_MAX_BYTES = 1024 * 1024 * 1024; // 1 GB safety limit
 const datasetFiles = new Map<string, { path: string; fileName: string; size: number; createdAt: number }>();
@@ -272,7 +272,7 @@ async function startMlService(): Promise<void> {
   }
 
   const python =
-    process.env.PYTHON_EXECUTABLE || "python";
+    process.env.PYTHON_EXECUTABLE || (process.platform === "win32" ? "python" : "python3");
 
   console.log(
     `Starting Python ML service using: ${python}`
@@ -323,8 +323,8 @@ async function startMlService(): Promise<void> {
     }
   });
 
-  // Wait up to 10 seconds for Python service
-  for (let i = 0; i < 40; i++) {
+  // Wait up to 15 seconds for Python service
+  for (let i = 0; i < 60; i++) {
     if (await mlHealth()) {
       console.log(
         `Python ML service ready on http://127.0.0.1:${ML_PORT}`
@@ -4215,7 +4215,10 @@ async function startServer() {
 
     app.get(
       "*",
-      (_req, res) => {
+      (req, res) => {
+        if (req.path.startsWith("/api/")) {
+          return res.status(404).json({ error: "API route not found" });
+        }
         res.sendFile(
           path.join(
             distPath,
@@ -4258,7 +4261,9 @@ function shutdown() {
   );
 
   if (mlProcess) {
-    mlProcess.kill();
+    try {
+      mlProcess.kill("SIGTERM");
+    } catch {}
     mlProcess = null;
   }
 
@@ -4274,6 +4279,15 @@ process.on(
   "SIGTERM",
   shutdown
 );
+
+process.on("exit", () => {
+  if (mlProcess) {
+    try {
+      mlProcess.kill();
+    } catch {}
+    mlProcess = null;
+  }
+});
 
 // ============================================================
 // START
