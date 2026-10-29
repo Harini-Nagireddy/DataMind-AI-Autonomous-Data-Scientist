@@ -8,7 +8,11 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC.svg?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Full-stack AI-powered data science platform for automated data profiling, cleaning, exploratory analysis, machine learning, model evaluation, explainability, and AI-assisted insights.**
+> **DataMind AI is a full-stack, AI-powered autonomous data science platform that simplifies the complete data science workflow—from dataset upload and data cleaning to exploratory analysis, automated machine learning, model evaluation, explainability, and AI-assisted insights.**
+
+**Live Demo:** [https://datamind-ai-r7ht.onrender.com](https://datamind-ai-r7ht.onrender.com)
+
+**GitHub Repository:** [DataMind AI — Autonomous Data Scientist](https://github.com/Harini-Nagireddy/DataMind-AI-Autonomous-Data-Scientist)
 
 ---
 
@@ -570,8 +574,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 Developed and maintained by **DataMind AI Contributors**.
 
-- **Project Repository**: [datamind-ai-autonomous-data-scientist](https://github.com/your-username/datamind-ai-autonomous-data-scientist)
-- **Issue Tracker**: [GitHub Issues](https://github.com/your-username/datamind-ai-autonomous-data-scientist/issues)
+- **Project Repository**: [datamind-ai-autonomous-data-scientist](https://github.com/Harini-Nagireddy/DataMind-AI-Autonomous-Data-Scientist)
+- **Issue Tracker**: [GitHub Issues](https://github.com/Harini-Nagireddy/DataMind-AI-Autonomous-Data-Scientist/issues)
 
 ---
 *Created for technical interviews, placement evaluation panels, and open-source demonstration.*
